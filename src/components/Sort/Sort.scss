@@ -3,14 +3,16 @@
 .sort {
   position: relative;
   margin-bottom: 50px;
+  &__svg {
+    margin-right: 8px;
+  }
+  &__svg_open {
+    transform: rotate(180deg);
+  }
   &__label {
     display: flex;
     justify-content: end;
     align-items: center;
-
-    svg {
-      margin-right: 8px;
-    }
 
     b {
       margin-right: 8px;

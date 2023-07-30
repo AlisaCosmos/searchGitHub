@@ -1,12 +1,40 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PaginationControlled from '../../components/Pagination/Pagination';
 import SearchShow from '../../components/ResultsShow/ResultsShow';
 import './MainPage.scss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Sort from '../../components/Sort/Sort';
+import { fetchResults } from '../../redux/slice/resultsSlice';
 
 export default function MainPage() {
+  const dispatch = useDispatch();
   const { status } = useSelector((state) => state.results);
+  const { searchValue } = useSelector((state) => state.filters);
+  const [sortType, setSortType] = useState(0);
+
+  //const getResults = async () => {
+  //колличество результатов на странице
+  // const percPage = 'per_page=10';
+  //колличество страниц
+  //const pages = '';
+  //const order = '';
+
+  //запрос на бек
+  //https://rickandmortyapi.com/api/character/?page=2
+
+  //дай данные и сохрани
+  //dispatch(
+  //  fetchResults({
+  //    percPage,
+  //    searchValue,
+  //  }),
+  //);
+  //};
+
+  //useEffect(() => {
+  // getResults();
+  //}, [searchValue, sortType]);
+
   return (
     <div className="mainPage container__row">
       {/*
@@ -19,7 +47,7 @@ export default function MainPage() {
         </div>
       ) : (
         <div>*/}
-      <Sort />
+      <Sort value={sortType} onCangeSort={(i) => setSortType(i)} />
       <SearchShow />
       <PaginationControlled />
       {/*</div>

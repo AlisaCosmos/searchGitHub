@@ -11,7 +11,26 @@
   font-family: &generalFont, Arial, Helvetica, sans-serif;
   box-sizing: border-box;
 }
+body {
+  font-family: $generalFont, Arial, Helvetica, sans-serif;
+  color: $mainFontColors;
+  //background-color: $bgColors;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 500;
+  overscroll-behavior: none;
 
+  //overflow-x: hidden;
+  //smoothScroll
+  height: 100vh;
+  width: 100vw;
+}
+a {
+  text-decoration: none;
+}
+.img {
+  max-width: 100%;
+}
 main {
   flex: 1 0 auto;
 }
@@ -22,9 +41,9 @@ main {
 }
 .container__row {
   width: 100%;
-  max-width: 1920px;
-  padding-left: 260px;
-  padding-right: 260px;
+  max-width: 1280px;
+  padding-left: 50px;
+  padding-right: 50px;
 
   @media (max-width: $mobile) {
     padding-left: 20px;

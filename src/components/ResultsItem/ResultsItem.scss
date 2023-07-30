@@ -1,0 +1,18 @@
+.resultsItem {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border-radius: 16px;
+  box-shadow: -10px 10px 50px rgba(0, 0, 0, 0.1), inset 10px 10px 60px rgba(255, 255, 255, 0.4);
+  &__inner {
+    display: flex;
+  }
+  &__col {
+    width: 50%;
+  }
+  &__img {
+    width: 200px;
+  }
+  &__title {
+    text-transform: uppercase;
+  }
+}

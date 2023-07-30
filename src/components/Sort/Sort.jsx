@@ -1,19 +1,21 @@
 import { useState } from 'react';
 import './Sort.scss';
+import * as cx from 'classnames';
 
-export default function Sort() {
+export default function Sort({ value, onCangeSort }) {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState(0);
+  const classTogSvg = cx('sort__svg', { 'sort__svg sort__svg_open': open });
   const list = ['По возрастанию', 'По убыванию'];
   const onClickListItem = (i) => {
-    setSelected(i);
+    onCangeSort(i);
     setOpen(false);
   };
-  const sortName = list[selected];
+  const sortName = list[value];
   return (
     <div className="sort">
       <div className="sort__label">
         <svg
+          className={classTogSvg}
           width="10"
           height="6"
           viewBox="0 0 10 6"
@@ -35,7 +37,7 @@ export default function Sort() {
               return (
                 <li
                   key={i}
-                  className={selected === i ? 'activ' : ''}
+                  className={value === i ? 'activ' : ''}
                   onClick={() => onClickListItem(i)}>
                   {item}
                 </li>

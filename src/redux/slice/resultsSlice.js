@@ -7,7 +7,8 @@ export const fetchResults = createAsyncThunk('results/fetchResultsStatus', async
   const { data } = await axios.get(
     `https://api.github.com/search/users?${percPage}&q=${searchValue}`,
   );
-  console.log(data, 'data в редаксе');
+  //console.log(data, 'data в редаксе');
+
   return data;
 });
 

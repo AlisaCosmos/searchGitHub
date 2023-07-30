@@ -10,7 +10,7 @@ export default function PaginationControlled() {
   const { page, totalPages } = useSelector((state) => state.filters);
   //Получаем номер страницы
   const handleChange = (event, value) => {
-    console.log(event);
+    //console.log(event);
     dispatch(setPage(value));
   };
 

@@ -7,6 +7,7 @@ export default function ResultsShow() {
 
   return (
     <div className="resultsShow">
+      <h2>Пользователи github</h2>
       {status === 'loading' ? <div>loading</div> : <ResultsListItems />}
     </div>
   );

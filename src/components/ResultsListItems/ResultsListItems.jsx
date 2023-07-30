@@ -8,7 +8,7 @@ export default function ResultsListItems() {
     results: { items },
   } = useSelector((state) => state.results);
 
-  console.log(items, 'items comp search');
+  //console.log(items, 'items comp search');
 
   return (
     <div className="resultsListItems">
