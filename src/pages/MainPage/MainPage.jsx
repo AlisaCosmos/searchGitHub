@@ -4,7 +4,7 @@ import SearchShow from '../../components/ResultsShow/ResultsShow';
 import './MainPage.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import Sort from '../../components/Sort/Sort';
-import { fetchResults } from '../../redux/slice/resultsSlice';
+import { fetchResults, setUsers } from '../../redux/slice/resultsSlice';
 
 export default function MainPage() {
   const dispatch = useDispatch();
@@ -27,6 +27,7 @@ export default function MainPage() {
         searchValue,
       }),
     ).then((res) => {
+      //dispatch(setUsers(res));
       console.log(res, '1 ответ получен"');
       return res;
     });

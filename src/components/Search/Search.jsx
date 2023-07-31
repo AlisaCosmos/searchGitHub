@@ -1,7 +1,7 @@
 import './Search.scss';
 import axios from 'axios';
 
-import { fetchResults } from '../../redux/slice/resultsSlice';
+import { fetchResults, setUsers } from '../../redux/slice/resultsSlice';
 import { useEffect, useState } from 'react';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
@@ -17,6 +17,7 @@ export default function Search() {
   const { searchValue, page } = useSelector((state) => state.filters);
   const {
     results: { items },
+    users,
   } = useSelector((state) => state.results);
   console.log(items, 'items');
   //const { repos_url } = items;
@@ -47,6 +48,7 @@ export default function Search() {
         searchValue,
       }),
     ).then(async (res) => {
+      dispatch(setUsers(res.payload.items));
       const user = 'AlisaCosmos';
       console.log(res, 'res');
       await axios.get(`https://api.github.com/users/${user}/repos`);

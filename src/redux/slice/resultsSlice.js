@@ -28,6 +28,7 @@ export const fetchResults = createAsyncThunk('results/fetchResultsStatus', async
 
 const initialState = {
   results: [],
+  users: [],
   status: 'loading',
 };
 
@@ -37,6 +38,9 @@ const resultsSlice = createSlice({
   reducers: {
     setResults(state, action) {
       state.results = action.payload;
+    },
+    setUsers(state, action) {
+      state.users = action.payload;
     },
   },
 
@@ -59,5 +63,5 @@ const resultsSlice = createSlice({
   },
 });
 
-export const { setResults } = resultsSlice.actions;
+export const { setResults, setUsers } = resultsSlice.actions;
 export default resultsSlice.reducer;
