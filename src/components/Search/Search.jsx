@@ -26,6 +26,8 @@ export default function Search() {
   console.log(reposit, 'reposit');
 
   const getResults = async () => {
+    //популярные
+    const popular = 'q=tom+repos:%3E42+followers:%3E1000';
     //колличество результатов на странице
     const percPage = 'per_page=10';
     //колличество страниц
@@ -40,6 +42,7 @@ export default function Search() {
 
     dispatch(
       fetchResults({
+        popular,
         percPage,
         searchValue,
       }),

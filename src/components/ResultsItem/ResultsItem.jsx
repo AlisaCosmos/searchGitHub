@@ -22,7 +22,7 @@ export default function ResultsItem({ data: { login, avatar_url, repos_url } }) 
       });
   };
   useEffect(() => {
-    getReposutoris();
+    //getReposutoris();
   }, []);
 
   //console.log(login, 'login');

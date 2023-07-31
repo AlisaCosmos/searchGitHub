@@ -8,9 +8,34 @@ import { fetchResults } from '../../redux/slice/resultsSlice';
 
 export default function MainPage() {
   const dispatch = useDispatch();
-  const { status } = useSelector((state) => state.results);
+  const { results, status } = useSelector((state) => state.results);
   const { searchValue } = useSelector((state) => state.filters);
   const [sortType, setSortType] = useState(0);
+
+  const gerUsers = () => {
+    //популярные
+    const popular = 'q=+repos:%3E42+followers:%3E1000';
+    //колличество результатов на странице
+    const percPage = 'per_page=10';
+    //колличество страниц
+    const pages = '';
+    const order = '';
+    dispatch(
+      fetchResults({
+        popular,
+        percPage,
+        searchValue,
+      }),
+    ).then((res) => {
+      console.log(res, '1 ответ получен"');
+      return res;
+    });
+    console.log('Должен вывестись после получения ответа');
+  };
+
+  useEffect(() => {
+    gerUsers();
+  }, []);
 
   //const getResults = async () => {
   //колличество результатов на странице
