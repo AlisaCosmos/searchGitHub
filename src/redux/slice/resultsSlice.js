@@ -5,7 +5,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 export const fetchResults = createAsyncThunk('results/fetchResultsStatus', async (params) => {
   const { percPage, searchValue, popular } = params;
   const getRandomUsers = 'users?';
-  const getUsers = `search?&q=${searchValue} `;
+  const getUsers = `search/users?&q=${searchValue}`;
   console.log(getUsers);
   console.log(searchValue, 'searchValue');
   const limit = 'x-ratelimit-used=4';
@@ -14,7 +14,7 @@ export const fetchResults = createAsyncThunk('results/fetchResultsStatus', async
   //https://api.github.com/users?${percPage}
 
   const { data } = await axios.get(
-    `https://api.github.com/${searchValue ? getUsers : getRandomUsers}${percPage}`,
+    `https://api.github.com/${searchValue ? getUsers : getRandomUsers}&${percPage}`,
     {
       headers: {
         'X-GitHub-Api-Version': '2022-11-28',
