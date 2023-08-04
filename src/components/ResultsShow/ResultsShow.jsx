@@ -3,7 +3,7 @@ import ResultsListItems from '../ResultsListItems/ResultsListItems';
 import { useSelector } from 'react-redux';
 
 export default function ResultsShow() {
-  const { status } = useSelector((state) => state.results);
+  const { status } = useSelector((state) => state.users);
 
   return (
     <div className="resultsShow">

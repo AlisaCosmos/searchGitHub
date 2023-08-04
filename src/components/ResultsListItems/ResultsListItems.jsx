@@ -4,12 +4,7 @@ import './ResultsListItems.scss';
 import { useSelector } from 'react-redux';
 
 export default function ResultsListItems() {
-  const { results, users } = useSelector((state) => state.results);
-  const {
-    results: { items },
-  } = useSelector((state) => state.results);
-
-  //console.log(items, 'items comp search');
+  const { users } = useSelector((state) => state.users);
 
   return (
     <div className="resultsListItems">

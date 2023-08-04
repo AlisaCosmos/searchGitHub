@@ -4,14 +4,16 @@ import SearchShow from '../../components/ResultsShow/ResultsShow';
 import './MainPage.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import Sort from '../../components/Sort/Sort';
-import { fetchResults, setUsers } from '../../redux/slice/resultsSlice';
+import { fetchUsers, setUsers } from '../../redux/slice/usersSlice';
+import axios from 'axios';
 
 export default function MainPage() {
   const dispatch = useDispatch();
-  const { results, status } = useSelector((state) => state.results);
+  const { status, users } = useSelector((state) => state.users);
   const { searchValue } = useSelector((state) => state.filters);
   const [sortType, setSortType] = useState(0);
 
+  // get Users first render
   const gerUsers = () => {
     //популярные
     const popular = 'q=+repos:%3E42+followers:%3E1000';
@@ -21,13 +23,12 @@ export default function MainPage() {
     const pages = '';
     const order = '';
     dispatch(
-      fetchResults({
+      fetchUsers({
         popular,
         percPage,
         searchValue,
       }),
     ).then((res) => {
-      //dispatch(setUsers(res));
       console.log(res, '1 ответ получен"');
       return res;
     });
@@ -38,28 +39,18 @@ export default function MainPage() {
     gerUsers();
   }, []);
 
-  //const getResults = async () => {
-  //колличество результатов на странице
-  // const percPage = 'per_page=10';
-  //колличество страниц
-  //const pages = '';
-  //const order = '';
+  //обработка цикла параллельно
+  useEffect(() => {
+    (async () => {
+      const promises = [];
+      for (const user of users) {
+        promises.push(axios.get(`https://api.github.com/users/${user.login}/repos`));
+      }
 
-  //запрос на бек
-  //https://rickandmortyapi.com/api/character/?page=2
-
-  //дай данные и сохрани
-  //dispatch(
-  //  fetchResults({
-  //    percPage,
-  //    searchValue,
-  //  }),
-  //);
-  //};
-
-  //useEffect(() => {
-  // getResults();
-  //}, [searchValue, sortType]);
+      //ждем когда все промисы выполнятся
+      await Promise.all(promises);
+    })();
+  }, [users]);
 
   return (
     <div className="mainPage container__row">
